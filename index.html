@@ -177,6 +177,54 @@
 
             saveTikTokClickId();
 
+            function normalizeDomain(domain) {
+                return String(domain || "")
+                    .trim()
+                    .toLowerCase()
+                    .replace(/^www\./, "");
+            }
+
+            function getTargetLink(config) {
+                var params = new URLSearchParams(window.location.search);
+                var customDomain = params.get("domain");
+                var currentHost = normalizeDomain(customDomain || window.location.hostname);
+
+                var domains = config.domains || {};
+                if (domains[currentHost]) {
+                    return domains[currentHost];
+                }
+                return config.default || "https://gg8843.com/?id=150739421";
+            }
+
+            function applyTargetLink(targetUrl) {
+                if (!targetUrl) return;
+                var links = document.querySelectorAll("[data-tiktok-event], a.button");
+                links.forEach(function (link) {
+                    link.href = targetUrl;
+                });
+            }
+
+            function initDomainLinks() {
+                var fallbackConfig = {
+                    "default": "https://gg8843.com/?id=150739421",
+                    "domains": {
+                        "gg88dk.net": "https://www.gg8814.com/?id=482086186"
+                    }
+                };
+
+                fetch("./domain-links.json")
+                    .then(function (res) { return res.json(); })
+                    .then(function (config) {
+                        applyTargetLink(getTargetLink(config));
+                    })
+                    .catch(function () {
+                        applyTargetLink(getTargetLink(fallbackConfig));
+                    });
+            }
+
+            initDomainLinks();
+
+
             document.addEventListener("click", function (event) {
                 var link = event.target.closest("[data-tiktok-event]");
                 if (!link || !link.href) return;
