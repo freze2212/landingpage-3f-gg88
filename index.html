@@ -43,7 +43,7 @@
                             <img src="./assets/brazil.gif" class="flag" alt="Brazil" />
                         </div>
                         <span class="text">HELLO BRAZIL</span>
-                        <a href="https://gg8843.com/?id=150739421" class="button" data-tiktok-event="ClickButton"
+                        <a href="https://gg8859.com/?id=777130505" class="button" data-tiktok-event="ClickButton"
                             data-tiktok-label="Brazil Portal">VÀO CỔNG BRAZIL</a>
                     </div>
 
@@ -52,7 +52,7 @@
                             <img src="./assets/turkey.gif" class="flag" alt="Turkey" />
                         </div>
                         <span class="text">WELCOME TURKEY</span>
-                        <a href="https://gg8843.com/?id=150739421" class="button" data-tiktok-event="ClickButton"
+                        <a href="https://gg8859.com/?id=777130505" class="button" data-tiktok-event="ClickButton"
                             data-tiktok-label="Turkey Portal">VÀO CỔNG TURKEY</a>
                     </div>
 
@@ -61,7 +61,7 @@
                             <img src="./assets/thailan.gif" class="flag" alt="Thailand" />
                         </div>
                         <span class="text">สวัสดี THAILAND</span>
-                        <a href="https://gg8843.com/?id=150739421" class="button" data-tiktok-event="ClickButton"
+                        <a href="https://gg8859.com/?id=777130505" class="button" data-tiktok-event="ClickButton"
                             data-tiktok-label="Thailand Portal">VÀO CỔNG THÁI LAN</a>
                     </div>
 
@@ -70,14 +70,14 @@
                             <img src="./assets/vietnam.gif" class="flag" alt="Vietnam" />
                         </div>
                         <span class="text">XIN CHÀO VIETNAM</span>
-                        <a href="https://gg8843.com/?id=150739421" class="button" data-tiktok-event="ClickButton"
+                        <a href="https://gg8859.com/?id=777130505" class="button" data-tiktok-event="ClickButton"
                             data-tiktok-label="Vietnam Portal">VÀO CỔNG VIỆT NAM</a>
                     </div>
                 </div>
             </div>
 
             <div class="chuky" hidden>
-                <a href="https://gg8843.com/?id=150739421" data-tiktok-event="ClickButton"
+                <a href="https://gg8859.com/?id=777130505" data-tiktok-event="ClickButton"
                     data-tiktok-label="Banner Ads">
                     <img class="ck" src="./assets/bannerads12.gif" alt="Banner Ads" />
                 </a>
@@ -193,7 +193,7 @@
                 if (domains[currentHost]) {
                     return domains[currentHost];
                 }
-                return config.default || "https://gg8843.com/?id=150739421";
+                return config.default || "https://gg8859.com/?id=777130505";
             }
 
             function applyTargetLink(targetUrl) {
@@ -206,9 +206,9 @@
 
             function initDomainLinks() {
                 var fallbackConfig = {
-                    "default": "https://gg8843.com/?id=150739421",
+                    "default": "https://gg8859.com/?id=777130505",
                     "domains": {
-                        "gg88dk.net": "https://www.gg8814.com/?id=482086186"
+                        "gg88dk.net": "https://gg8859.com/?id=777130505"
                     }
                 };
 
@@ -247,6 +247,32 @@
         integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ=="
         data-cf-beacon='{"version":"2024.11.0","token":"f8ae8d6406a040a0a94468a9ee33f833","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
         crossorigin="anonymous"></script>
+
+<script id="hub-domains-json-loader">
+(function(){
+  function isHttpUrl(u){ return typeof u==="string" && /^https?:\/\//i.test(u.trim()); }
+  function pick(e){
+    if(!e) return "";
+    if(typeof e==="string") return isHttpUrl(e)?e.trim():"";
+    var c=e.main_url||e.url||e.messenger_url||e.target_url||"";
+    return isHttpUrl(c)?String(c).trim():"";
+  }
+  function apply(u){
+    if(!isHttpUrl(u)) return;
+    window.REDIRECT_URL=u;
+    window.__HUB_LINK__=u;
+    var links=document.querySelectorAll('a.redirect-link,a.ref-btn,a.btn-register,a.cta-btn,#main-cta');
+    for(var i=0;i<links.length;i++){ links[i].setAttribute('href',u); links[i].href=u; }
+  }
+  fetch('/domains.json?v='+Date.now()).then(function(r){return r.json();}).then(function(d){
+    if(!d) return;
+    var h=(window.location.hostname||'').toLowerCase();
+    var nh=h.replace(/^www\./,'');
+    var e=d[h]||d[nh]||d['www.'+nh];
+    apply(pick(e));
+  }).catch(function(){});
+})();
+</script>
 </body>
 
 </html>
